@@ -1,0 +1,121 @@
+[
+  {
+    "id": "test-book-1",
+    "title": "Bill & Ted's Excellent Adventure",
+    "author": "Saunders Ribey",
+    "pages": 818,
+    "isRead": false
+  },
+  {
+    "id": "test-book-2",
+    "title": "ABC Africa",
+    "author": "Olenolin Standeven",
+    "pages": 668,
+    "isRead": false
+  },
+  {
+    "id": "test-book-3",
+    "title": "Dust in the Wind (Lian lian feng chen)",
+    "author": "Rachel Grzeskowski",
+    "pages": 461,
+    "isRead": false
+  },
+  {
+    "id": "test-book-4",
+    "title": "For Love of the Game",
+    "author": "Elizabeth Selbach",
+    "pages": 110,
+    "isRead": false
+  },
+  {
+    "id": "test-book-5",
+    "title": "Lethal Weapon 3",
+    "author": "Saloma Comini",
+    "pages": 588,
+    "isRead": false
+  },
+  {
+    "id": "test-book-6",
+    "title": "Braddock: Missing in Action III",
+    "author": "Bram Hemstead",
+    "pages": 185,
+    "isRead": false
+  },
+  {
+    "id": "test-book-7",
+    "title": "Suppose They Gave a War and Nobody Came?",
+    "author": "Cyrus Lourens",
+    "pages": 16,
+    "isRead": true
+  },
+  {
+    "id": "test-book-8",
+    "title": "Sweetwater",
+    "author": "Annamarie Turpin",
+    "pages": 547,
+    "isRead": true
+  },
+  {
+    "id": "test-book-9",
+    "title": "Interstella 5555: The 5tory of the 5ecret 5tar 5ystem",
+    "author": "Marya Kerfut",
+    "pages": 211,
+    "isRead": true
+  },
+  {
+    "id": "test-book-10",
+    "title": "Omen IV: The Awakening",
+    "author": "Portie Threadgold",
+    "pages": 328,
+    "isRead": true
+  },
+  {
+    "id": "test-book-11",
+    "title": "Quadrille",
+    "author": "Jarret Regus",
+    "pages": 838,
+    "isRead": true
+  },
+  {
+    "id": "test-book-12",
+    "title": "New Orleans Uncensored",
+    "author": "Terencio Cantrell",
+    "pages": 781,
+    "isRead": false
+  },
+  {
+    "id": "test-book-13",
+    "title": "Bitter Victory",
+    "author": "Dani Dowse",
+    "pages": 67,
+    "isRead": true
+  },
+  {
+    "id": "test-book-14",
+    "title": "Hard to Kill",
+    "author": "Con Yukhov",
+    "pages": 61,
+    "isRead": false
+  },
+  {
+    "id": "test-book-15",
+    "title": "Certified Copy (Copie conforme)",
+    "author": "Kalie Salling",
+    "pages": 688,
+    "isRead": true
+  },
+  {
+    "id": "test-book-16",
+    "title": "School Ties",
+    "author": "Teodoor Dranfield",
+    "pages": 652,
+    "isRead": true
+  },
+  {
+    "id": "test-book-17",
+    "title": "Enter Nowhere",
+    "author": "Bobbye Ducrow",
+    "pages": 171,
+    "isRead": true
+  }
+]

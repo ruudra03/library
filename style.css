@@ -46,3 +46,7 @@ span {
 :root {
   --font-family: system-ui;
 }
+
+.book {
+  border: 1px solid black;
+}
