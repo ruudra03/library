@@ -42,11 +42,17 @@ Book.prototype.isReadTrue = function () {
 // Get Book HTML element
 Book.prototype.htmlString = function () {
   let htmlString = `
-    <span class="book-id">ID: ${this.id}</span>
-    <span class="book-title">${this.title}</span>
-    <span class="book-author">by ${this.author}</span>
-    <span class="book-pages">Pages: ${this.pages}</span>
-    <span class="book-is-read">${this.isRead ? "Read" : "Not Read"}</span>
+    <div class="book-record">
+      <span class="book-id">ID: ${this.id}</span>
+      <span class="book-is-read ${this.isRead ? "read" : "not-read"}">${
+    this.isRead ? "Read" : "Not Read"
+  }</span>
+    </div>
+    <div class="book-info">
+      <span class="title">${this.title}</span>
+      <span class="author">by ${this.author}</span>
+      <span class="pages">(${this.pages} pages)</span>
+    </div>
   `;
 
   return htmlString;
