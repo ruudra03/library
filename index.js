@@ -1,26 +1,6 @@
 // Library initialisation
 let library = [];
 
-// Load stored library data
-document.addEventListener("DOMContentLoaded", function () {
-  // Fetch local JSON file
-  fetch("./data.json")
-    .then(function (res) {
-      if (!res.ok) {
-        throw new Error(`HTTP error! ${res.statusText}`);
-      }
-
-      return res.json(); // Parse JSON data
-    })
-    .then(function (data) {
-      // Render book elements from the library
-      renderLibrary(data);
-    })
-    .catch(function (err) {
-      console.error(`Fetch failed! ${err}`);
-    });
-});
-
 // Book constructor
 function Book(id, title, author, pages) {
   if (!new.target) {
@@ -42,21 +22,41 @@ Book.prototype.isReadTrue = function () {
 // Get Book HTML element
 Book.prototype.htmlString = function () {
   let htmlString = `
-    <div class="book-record">
-      <span class="book-id">ID: ${this.id}</span>
-      <span class="book-is-read ${this.isRead ? "read" : "not-read"}">${
+      <div class="book-record">
+        <span class="book-id">${this.id}</span>
+        <span class="book-is-read ${this.isRead ? "read" : "not-read"}">${
     this.isRead ? "Read" : "Not Read"
   }</span>
-    </div>
-    <div class="book-info">
-      <span class="title">${this.title}</span>
-      <span class="author">by ${this.author}</span>
-      <span class="pages">(${this.pages} pages)</span>
-    </div>
-  `;
+      </div>
+      <div class="book-info">
+        <span class="title">${this.title}</span>
+        <span class="author">by ${this.author}</span>
+        <span class="pages">(${this.pages} pages)</span>
+      </div>
+    `;
 
   return htmlString;
 };
+
+// Load stored library data
+document.addEventListener("DOMContentLoaded", function () {
+  // Fetch local JSON file
+  fetch("./data.json")
+    .then(function (res) {
+      if (!res.ok) {
+        throw new Error(`HTTP error! ${res.statusText}`);
+      }
+
+      return res.json(); // Parse JSON data
+    })
+    .then(function (data) {
+      // Render book elements from the library
+      renderLibrary(data);
+    })
+    .catch(function (err) {
+      console.error(`Fetch failed! ${err}`);
+    });
+});
 
 // Render books from library to HTML as elements
 function renderLibrary(libraryData) {
@@ -67,23 +67,8 @@ function renderLibrary(libraryData) {
 
   // Create book elements from library
   libraryData.forEach(function (book) {
-    // Create HTML elements
-    const bookElement = document.createElement("div");
-    bookElement.classList.add("book"); // Add CSS class
-
     // Add new Book object to library
-    let libraryBook = addBookToLibrary(
-      book.id,
-      book.title,
-      book.author,
-      book.pages,
-      book.isRead
-    );
-
-    bookElement.innerHTML = libraryBook.htmlString();
-
-    // Append book element to library
-    container.appendChild(bookElement);
+    addBookToLibrary(book.id, book.title, book.author, book.pages, book.isRead);
   });
 }
 
@@ -110,5 +95,51 @@ function addBookToLibrary(id, title, author, pages, isRead) {
   // Add to Library array
   library.push(newBook);
 
+  // Add book element to HTML
+  const container = document.querySelector("#library");
+  let bookElement = document.createElement("div");
+  bookElement.classList.add("book"); // Add CSS class
+
+  bookElement.innerHTML = newBook.htmlString();
+
+  // Append book element to library
+  container.appendChild(bookElement);
+
   return newBook;
 }
+
+// Add event listener for the add new button to display new book form dialog
+const newBookBtn = document.querySelector("#newBookBtn");
+const newBookDialog = document.querySelector("#newBookDialog");
+const dialogCloseBtn = document.querySelector("#closeBtn");
+const newBookForm = document.querySelector("#newBookForm");
+
+console.log(newBookForm.elements["bookIsRead"].value);
+
+newBookBtn.addEventListener("click", function () {
+  // Display dialog
+  newBookDialog.showModal();
+});
+
+// Listen for cancel inside the dialog
+dialogCloseBtn.addEventListener("click", function (e) {
+  newBookDialog.close();
+});
+
+// Listen for new book form submission
+newBookForm.addEventListener("submit", function (e) {
+  // Stop form submission
+  e.preventDefault();
+
+  let bookTitle = newBookForm.elements["bookTitle"].value;
+  let bookAuthor = newBookForm.elements["bookAuthor"].value;
+  let bookPages = newBookForm.elements["bookPages"].value;
+  let bookIsRead = newBookForm.elements["bookIsRead"].value;
+
+  console.log(bookIsRead);
+
+  addBookToLibrary(null, bookTitle, bookAuthor, bookPages, bookIsRead);
+
+  // Close the dialog
+  newBookDialog.close();
+});

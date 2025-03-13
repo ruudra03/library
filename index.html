@@ -8,6 +8,34 @@
     <script src="./index.js" async></script>
   </head>
   <body>
+    <div id="actionBar">
+      <button id="newBookBtn">New Book</button>
+    </div>
     <div id="library"></div>
+    <dialog id="newBookDialog">
+      <h2>New book</h2>
+      <form id="newBookForm">
+        <div class="form-container">
+          <div class="info">
+            <label for="book_title">Title*</label>
+            <input id="book_title" name="bookTitle" type="text" />
+          </div>
+          <div class="info">
+            <label for="book_author">Author*</label>
+            <input id="book_author" name="bookAuthor" type="text" />
+          </div>
+          <div class="info">
+            <label for="book_pages">Total pages*</label>
+            <input id="book_pages" name="bookPages" type="number" />
+          </div>
+          <div class="info">
+            <label for="book_is_read">Is read?</label>
+            <input id="book_is_read" name="bookIsRead" type="radio" />
+          </div>
+        </div>
+        <button type="submit">Confirm</button>
+      </form>
+      <button id="closeBtn" type="button">Cancel</button>
+    </dialog>
   </body>
 </html>
