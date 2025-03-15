@@ -4,7 +4,9 @@ let library = [];
 // Book constructor
 function Book(id, title, author, pages) {
   if (!new.target) {
-    throw new Error("You must use the 'new' operator to call the constructor");
+    throw new Error(
+      "Book constructor failed! Function called without the use of 'new'"
+    );
   }
 
   this.id = id;
@@ -114,32 +116,70 @@ const newBookDialog = document.querySelector("#newBookDialog");
 const dialogCloseBtn = document.querySelector("#closeBtn");
 const newBookForm = document.querySelector("#newBookForm");
 
-console.log(newBookForm.elements["bookIsRead"].value);
+// Form inputs
+let bookTitle = newBookForm.elements["bookTitle"];
+let bookAuthor = newBookForm.elements["bookAuthor"];
+let bookPages = newBookForm.elements["bookPages"];
+let bookIsRead = newBookForm.elements["bookIsRead"];
 
 newBookBtn.addEventListener("click", function () {
   // Display dialog
-  newBookDialog.showModal();
+  newBookDialog.style.display = "block";
 });
 
 // Listen for cancel inside the dialog
 dialogCloseBtn.addEventListener("click", function (e) {
-  newBookDialog.close();
+  newBookDialog.style.display = "none";
 });
+
+//
 
 // Listen for new book form submission
 newBookForm.addEventListener("submit", function (e) {
   // Stop form submission
   e.preventDefault();
 
-  let bookTitle = newBookForm.elements["bookTitle"].value;
-  let bookAuthor = newBookForm.elements["bookAuthor"].value;
-  let bookPages = newBookForm.elements["bookPages"].value;
-  let bookIsRead = newBookForm.elements["bookIsRead"].value;
+  // Remove missing-input CSS class from previous submission
+  bookTitle.classList.remove("missing-input");
+  bookAuthor.classList.remove("missing-input");
+  bookPages.classList.remove("missing-input");
 
-  console.log(bookIsRead);
+  // Check for required inputs
+  if (!bookTitle.value || !bookAuthor.value || !bookPages.value) {
+    // Add CSS classes to display errors
+    if (!bookTitle.value) {
+      bookTitle.classList.add("missing-input");
+    }
 
-  addBookToLibrary(null, bookTitle, bookAuthor, bookPages, bookIsRead);
+    if (!bookAuthor.value) {
+      bookAuthor.classList.add("missing-input");
+    }
 
-  // Close the dialog
-  newBookDialog.close();
+    if (!bookPages.value) {
+      bookPages.classList.add("missing-input");
+    }
+  } else {
+    // Create new book and add to the HTML library
+    addBookToLibrary(
+      null,
+      bookTitle.value,
+      bookAuthor.value,
+      bookPages.value,
+      bookIsRead.checked
+    );
+
+    // Reset the form
+    clearFormInputs();
+
+    // Close the dialog
+    newBookDialog.style.display = "none";
+  }
 });
+
+// Reset form inputs
+function clearFormInputs() {
+  bookTitle.value = "";
+  bookAuthor.value = "";
+  bookPages.value = 0;
+  bookIsRead.checked = false;
+}

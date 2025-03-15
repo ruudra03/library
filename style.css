@@ -136,3 +136,91 @@ span {
   font-size: 14px;
   font-weight: 200;
 }
+
+/* New Book Dialog Box */
+#newBookDialog {
+  display: none; /* Hide by default */
+  position: fixed;
+  z-index: 1; /* Upper layer */
+  padding-top: 75px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* New Book Form */
+#newBookForm {
+  background-color: whitesmoke;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+}
+
+#newBookForm h2 {
+  margin: 0.5rem;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+#newBookForm .form-container {
+  display: grid;
+  grid-template-rows: repeat(auto-fit, 1fr);
+  grid-template-columns: 1fr 3fr;
+  row-gap: 0.5rem;
+  column-gap: 1rem;
+}
+
+#newBookForm .form-label {
+  font-size: 18px;
+  text-align: right;
+}
+
+#newBookForm .form-input {
+  width: 90%;
+  padding: 0 0.5rem;
+  border: none;
+}
+
+#newBookForm .missing-input {
+  outline: 1px solid red;
+}
+
+#newBookForm .number-input {
+  width: 15%;
+}
+
+#newBookForm .checkbox-input {
+  max-width: fit-content;
+}
+
+/* The Close Button */
+#closeBtn {
+  background: transparent;
+  border: none;
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#closeBtn:hover,
+#closeBtn:focus {
+  background: transparent;
+  border: none;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#newBookForm .submit-btn {
+  margin: 2rem 0.5rem;
+  padding: 0 0.5rem;
+  background-color: var(--primary-color);
+  border: none;
+  outline: 1px solid black;
+}

@@ -8,34 +8,54 @@
     <script src="./index.js" async></script>
   </head>
   <body>
+    <!-- Action Bar -->
     <div id="actionBar">
       <button id="newBookBtn">New Book</button>
     </div>
+
+    <!-- Library -->
     <div id="library"></div>
-    <dialog id="newBookDialog">
-      <h2>New book</h2>
+
+    <!-- New Book Dialog -->
+    <div id="newBookDialog">
       <form id="newBookForm">
+        <button id="closeBtn" type="button">&times;</button>
+        <h2>New book</h2>
         <div class="form-container">
-          <div class="info">
-            <label for="book_title">Title*</label>
-            <input id="book_title" name="bookTitle" type="text" />
-          </div>
-          <div class="info">
-            <label for="book_author">Author*</label>
-            <input id="book_author" name="bookAuthor" type="text" />
-          </div>
-          <div class="info">
-            <label for="book_pages">Total pages*</label>
-            <input id="book_pages" name="bookPages" type="number" />
-          </div>
-          <div class="info">
-            <label for="book_is_read">Is read?</label>
-            <input id="book_is_read" name="bookIsRead" type="radio" />
-          </div>
+          <label for="book_title" class="form-label">Title*</label>
+          <input
+            id="book_title"
+            name="bookTitle"
+            class="form-input"
+            type="text"
+          />
+
+          <label for="book_author" class="form-label">Author*</label>
+          <input
+            id="book_author"
+            name="bookAuthor"
+            class="form-input"
+            type="text"
+          />
+
+          <label for="book_pages" class="form-label">Total pages*</label>
+          <input
+            id="book_pages"
+            name="bookPages"
+            class="form-input number-input"
+            type="number"
+          />
+
+          <label for="book_is_read" class="form-label">Is read?</label>
+          <input
+            id="book_is_read"
+            name="bookIsRead"
+            class="form-input checkbox-input"
+            type="checkbox"
+          />
         </div>
-        <button type="submit">Confirm</button>
+        <button type="submit" class="submit-btn">Add book library</button>
       </form>
-      <button id="closeBtn" type="button">Cancel</button>
-    </dialog>
+    </div>
   </body>
 </html>
