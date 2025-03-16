@@ -47,7 +47,6 @@ span {
   --font-family: system-ui;
   --primary-color: #f9dc5c;
   --is-read-green: #06aa6d;
-  --is-read-red: #dc143c;
 }
 
 #actionBar {
@@ -89,7 +88,7 @@ span {
   flex-direction: column;
 }
 
-.book-record {
+.book-actions {
   background-color: var(--primary-color);
   font-size: 16px;
 
@@ -98,27 +97,37 @@ span {
   align-items: center;
 }
 
-.book-record .book-id {
+.toggle-read-btn {
   margin-left: 0.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-read-btn.not-read {
   font-weight: 100;
+  text-decoration: line-through;
+  color: chocolate;
+  transition-duration: 0.5s;
 }
 
-.book-record .book-is-read {
-  margin-right: 0.5rem;
-  font-weight: 200;
-}
-
-.book-is-read.read {
+.toggle-read-btn.read {
+  font-weight: 900;
   color: var(--is-read-green);
-  font-weight: 400;
+  transition-duration: 0.5s;
 }
 
-.book-is-read.not-read {
-  color: var(--is-read-red);
+.remove-book-btn {
+  background-color: transparent;
+  border: none;
+}
+
+.delete-icon {
+  height: 2rem;
 }
 
 .book-info {
-  margin: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .book-info .title {
@@ -191,7 +200,7 @@ span {
 }
 
 #newBookForm .number-input {
-  width: 15%;
+  width: 20%;
 }
 
 #newBookForm .checkbox-input {

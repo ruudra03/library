@@ -1,6 +1,9 @@
 // Library initialisation
 let library = [];
 
+// Select HTML element for library
+const container = document.querySelector("#library");
+
 // Book constructor
 function Book(id, title, author, pages) {
   if (!new.target) {
@@ -17,18 +20,35 @@ function Book(id, title, author, pages) {
 }
 
 // Set Book is read flag to true
-Book.prototype.isReadTrue = function () {
-  this.isRead = true;
+Book.prototype.isReadToggle = function () {
+  if (this.isRead) {
+    this.isRead = false;
+  } else {
+    this.isRead = true;
+  }
 };
 
 // Get Book HTML element
 Book.prototype.htmlString = function () {
   let htmlString = `
-      <div class="book-record">
-        <span class="book-id">${this.id}</span>
-        <span class="book-is-read ${this.isRead ? "read" : "not-read"}">${
-    this.isRead ? "Read" : "Not Read"
-  }</span>
+      <div class="book-actions">
+        <button
+          class="toggle-read-btn ${this.isRead ? "read" : "not-read"}" 
+          type="button"
+          title="Click to ${this.isRead ? "unread" : "read"}"
+          onclick="toggleReadAction(this, '${this.id}')"
+        >
+          Read
+        </button>
+        <button 
+          class="remove-book-btn" 
+          type="button"
+          onclick="removeBookFromLibrary(this.parentElement.parentElement, '${
+            this.id
+          }')"
+        >
+            <img class="delete-icon" src="./images/delete_icon.png" alt="Delete icon">
+        </button>
       </div>
       <div class="book-info">
         <span class="title">${this.title}</span>
@@ -62,8 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Render books from library to HTML as elements
 function renderLibrary(libraryData) {
-  const container = document.querySelector("#library");
-
   // Reset container in case of repeated fetch
   container.innerHTML = "";
 
@@ -91,14 +109,13 @@ function addBookToLibrary(id, title, author, pages, isRead) {
 
   // Mark read if required i.e., change default value of false
   if (isRead) {
-    newBook.isReadTrue();
+    newBook.isReadToggle();
   }
 
   // Add to Library array
   library.push(newBook);
 
   // Add book element to HTML
-  const container = document.querySelector("#library");
   let bookElement = document.createElement("div");
   bookElement.classList.add("book"); // Add CSS class
 
@@ -182,4 +199,34 @@ function clearFormInputs() {
   bookAuthor.value = "";
   bookPages.value = 0;
   bookIsRead.checked = false;
+}
+
+// Book actions (Toggle read and Remove book)
+
+// Toggle read action
+function toggleReadAction(bookReadDiplay, bookId) {
+  // Change CSS
+  bookReadDiplay.classList.toggle("read");
+  bookReadDiplay.classList.toggle("not-read");
+
+  // Find book
+  let bookSelection = library.find(function (book) {
+    return book.id === bookId;
+  });
+
+  // Toggle read
+  bookSelection.isReadToggle();
+}
+
+// Remove book action
+function removeBookFromLibrary(bookElement, bookId) {
+  // Remove element from DOM
+  bookElement.remove(bookElement);
+
+  // Remove element from library
+  library.forEach(function (book, index) {
+    if (book.id === bookId) {
+      library.splice(index, 1);
+    }
+  });
 }
