@@ -35,10 +35,25 @@ Book.prototype.htmlString = function () {
         <button
           class="toggle-read-btn ${this.isRead ? "read" : "not-read"}" 
           type="button"
-          title="Click to ${this.isRead ? "unread" : "read"}"
           onclick="toggleReadAction(this, '${this.id}')"
         >
-          Read
+        ${
+          this.isRead
+            ? `
+            <img
+              class="read-icon"
+              src="./images/read_icon.png"
+              alt="Read icon"
+            >
+          `
+            : `
+            <img
+              class="not-read-icon"
+              src="./images/not_read_icon.png"
+              alt="Not read icon"
+            >
+          `
+        }
         </button>
         <button 
           class="remove-book-btn" 
@@ -205,16 +220,23 @@ function clearFormInputs() {
 
 // Toggle read action
 function toggleReadAction(bookReadDiplay, bookId) {
-  // Change CSS
-  bookReadDiplay.classList.toggle("read");
-  bookReadDiplay.classList.toggle("not-read");
-
   // Find book
   let bookSelection = library.find(function (book) {
     return book.id === bookId;
   });
 
-  // Toggle read
+  // Update read display and change CSS
+  let isReadStatusIcon = bookReadDiplay.querySelector("img");
+
+  if (bookSelection.isRead) {
+    bookReadDiplay.classList.toggle("read"); // Toggle CSS class
+    isReadStatusIcon.src = "./images/not_read_icon.png"; // Toggle icon
+  } else {
+    bookReadDiplay.classList.toggle("not-read"); // Toggle CSS class
+    isReadStatusIcon.src = "./images/read_icon.png"; // Toggle icon
+  }
+
+  // Toggle read record on object
   bookSelection.isReadToggle();
 }
 

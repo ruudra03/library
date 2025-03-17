@@ -105,15 +105,10 @@ span {
 }
 
 .toggle-read-btn.not-read {
-  font-weight: 100;
-  text-decoration: line-through;
-  color: chocolate;
   transition-duration: 0.5s;
 }
 
 .toggle-read-btn.read {
-  font-weight: 900;
-  color: var(--is-read-green);
   transition-duration: 0.5s;
 }
 
@@ -122,6 +117,8 @@ span {
   border: none;
 }
 
+.read-icon,
+.not-read-icon,
 .delete-icon {
   height: 2rem;
 }
